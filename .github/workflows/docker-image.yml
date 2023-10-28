@@ -16,8 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set current working directory
+    - name: Set current working directory and build
       working-directory: ./CommandsService
-
-    - name: Build the Docker image
       run: docker build . --file Dockerfile --tag commandservice:$(date +%s)
