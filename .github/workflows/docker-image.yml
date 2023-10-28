@@ -18,4 +18,4 @@ jobs:
 
     - name: Set current working directory and build
       working-directory: ./CommandsService
-      run: docker build . --file Dockerfile --tag commandservice:$(date +%s)
+      run: docker build . --file Dockerfile --tag commandservice:$GITHUB_RUN_ID
