@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set current working directory
+      working-directory: ./CommandsService
+
     - name: Build the Docker image
-      run: docker build . --file CommandsService/Dockerfile --tag commandservice:$(date +%s)
+      run: docker build . --file Dockerfile --tag commandservice:$(date +%s)
