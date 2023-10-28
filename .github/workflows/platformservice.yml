@@ -1,4 +1,4 @@
-name: CommandsSerivce CI
+name: PlatformService CI
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image
-      working-directory: ./CommandsService
+      working-directory: ./PlatformService
       run: |
-        docker build . --file Dockerfile --tag gwadadasol/commandservice:$GITHUB_RUN_ID
-        docker push gwadadasol/commandservice:$GITHUB_RUN_ID
+        docker build . --file Dockerfile --tag gwadadasol/platformservice:$GITHUB_RUN_ID
+        docker push gwadadasol/platformservice:$GITHUB_RUN_ID
