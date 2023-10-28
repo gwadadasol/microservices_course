@@ -16,14 +16,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set current working directory and build
+    # - name: Set current working directory and build
+    #   working-directory: ./CommandsService
+    #   run: docker build . --file Dockerfile --tag commandservice:$GITHUB_RUN_ID
+
+    # - name: Log in to Docker Hub
+    #   run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    # - name: Push Docker image
+    #   run: |
+    #     # Push the Docker image to your container registry (Docker Hub in this example)
+    #     docker push gwadadasol/commandservice:$GITHUB_RUN_ID
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
       working-directory: ./CommandsService
-      run: docker build . --file Dockerfile --tag commandservice:$GITHUB_RUN_ID
-
-    - name: Log in to Docker Hub
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Push Docker image
       run: |
-        # Push the Docker image to your container registry (Docker Hub in this example)
+        docker build . --file Dockerfile --tag gwadadasol/commandservice:$GITHUB_RUN_ID
         docker push gwadadasol/commandservice:$GITHUB_RUN_ID
