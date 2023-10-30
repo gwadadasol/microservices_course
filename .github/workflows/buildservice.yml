@@ -16,6 +16,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Check modified files
+      id: check_files
+      run: |
+        # Get a list of modified files
+        MODIFIED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+
+        # Check if specific directory is modified
+        if echo "$MODIFIED_FILES" | grep -q "./CommandsService"; then
+          echo "Changes detected in the specified directory."
+          echo "::set-output name=directory_changed::true"
+        else
+          echo "No changes detected in the specified directory."
+          echo "::set-output name=directory_changed::false"
+        fi
+      shell: bash
+
+
+
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
@@ -24,6 +42,7 @@ jobs:
 
     - name: Build and push Docker image
       working-directory: ./CommandsService
+      if: steps.check_files.outputs.directory_changed == 'true'
       run: |
         docker build . --file Dockerfile --tag gwadadasol/commandservice:$GITHUB_RUN_ID
         docker push gwadadasol/commandservice:$GITHUB_RUN_ID
