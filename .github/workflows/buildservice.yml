@@ -22,6 +22,8 @@ jobs:
         # Get a list of modified files
         MODIFIED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
 
+        git fsck --full
+
         # Check if specific directory is modified
         if echo "$MODIFIED_FILES" | grep -q "./CommandsService"; then
           echo "Changes detected in the specified directory."
