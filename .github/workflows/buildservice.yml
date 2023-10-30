@@ -20,6 +20,8 @@ jobs:
       working-directory: ./CommandsService
       id: check_files
       run: |
+        git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+        
         # Get a list of modified files
         MODIFIED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
 
