@@ -1,4 +1,4 @@
-name: CommandsSerivce CI
+name: PlatformSerivce CI
 
 on:
   push:
