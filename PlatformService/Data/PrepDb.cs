@@ -29,7 +29,6 @@ namespace PlatformService.Data
                 }
             }
 
-
             if (!context.Platforms.Any())
             {
                 System.Console.WriteLine("--> Seeding data...");
@@ -39,9 +38,7 @@ namespace PlatformService.Data
                     new Platform(){Name="SQL Server Express", Publisher="Microsoft", Cost="Free"},
                     new Platform(){Name="Kubernetes", Publisher="Cloud Native Computing Foundation", Cost="Free"}
                 );
-
                 context.SaveChanges();
-
             }
             else
             {
