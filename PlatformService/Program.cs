@@ -45,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-PrepDb.PrePopulation(app);
+PrepDb.PrePopulation(app, builder.Environment.IsProduction());
 
 app.Run();
