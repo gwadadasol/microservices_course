@@ -16,27 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Check modified files
-      working-directory: ./CommandsService
-      id: check_files
-      run: |
-        git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-        
-        # Get a list of modified files
-        MODIFIED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-
-        git fsck --full
-
-        # Check if specific directory is modified
-        if echo "$MODIFIED_FILES" | grep -q "./CommandsService"; then
-          echo "Changes detected in the specified directory."
-          echo "::set-output name=directory_changed::true"
-        else
-          echo "No changes detected in the specified directory."
-          echo "::set-output name=directory_changed::false"
-        fi
-      shell: bash
-
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
