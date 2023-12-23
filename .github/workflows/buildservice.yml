@@ -1,12 +1,12 @@
 name: CommandsSerivce CI
 
 on:
-  push:
-   paths:
-      - 'CommandsService/**'
-  branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # push:
+  #  paths:
+  #     - 'CommandsService/**'
+  # branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
