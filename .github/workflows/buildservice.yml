@@ -1,9 +1,9 @@
 name: CommandsSerivce CI
 
 on:
-  # push:
-  #  paths:
-  #     - 'CommandsService/**'
+   push:
+    paths:
+       - 'CommandsService/**'
   # branches: [ "main" ]
   # pull_request:
   #   branches: [ "main" ]
