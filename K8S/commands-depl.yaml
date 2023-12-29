@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: commandservice
-          image: gwadadasol/commandservice:2
+          image: gwadadasol/commandservice:latest
 ---
 apiVersion: v1
 kind: Service

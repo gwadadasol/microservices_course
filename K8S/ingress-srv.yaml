@@ -3,9 +3,13 @@ kind: Ingress
 metadata:
   name: ingress-srv
   annotations:
-    nginx.ingress.kubernetes.io/use-regex: 'true'
+  #   nginx.ingress.kubernetes.io/use-regex: 'true'
+    # nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   ingressClassName: nginx
+  # backend:
+  #   serviceName: default-http-backend
+  #   servicePort: 80
   rules:
     - host: acme.com
       http:
@@ -17,10 +21,25 @@ spec:
                 name: platforms-clusterip-srv
                 port:
                   number: 80
-          - path: /api/c/platforms
-            pathType: Prefix
-            backend:
-              service:
-                name: commands-clusterip-srv
-                port:
-                  number: 80
+          # - path: /weatherforecast
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: testapi-clusterip-srv
+          #       port:
+          #         number: 80    
+          # - path: /test
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: test-app-clusterip-srv
+          #       port:
+          #         number: 80    
+
+          # - path: /api/c/platforms
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: commands-clusterip-srv
+          #       port:
+          #         number: 80
