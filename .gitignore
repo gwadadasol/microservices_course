@@ -475,3 +475,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+K8S/example-ingress.yaml
+K8S/testapi-depl.yaml
+K8S/testapp-depl.yaml
+K8S/testapp-srv.yaml
