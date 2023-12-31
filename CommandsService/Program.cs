@@ -1,4 +1,6 @@
+using CommandsService.AsyncDataServices;
 using CommandsService.Data;
+using CommandsService.EventProcessing;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 builder.Services.AddControllers();
+
+builder.Services.AddHostedService<MessageBusSuscriber>();
+
+builder.Services.AddSingleton<IEventProcessor, EventProcessor>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
