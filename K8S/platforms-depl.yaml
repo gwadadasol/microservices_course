@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: platformservice
-          image: gwadadasol/platformservice:10
+          image: gwadadasol/platformservice:latest
           ports:
           - containerPort: 8080
 ---
