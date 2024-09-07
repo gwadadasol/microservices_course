@@ -35,7 +35,7 @@ namespace CommandsService.Controllers
         }
 
         [HttpGet("{commandId}", Name = "GetCommandForPlatform")]
-                public ActionResult<CommandReadDto> GetCommandForPlatform(int platformId, int commandId)
+        public ActionResult<CommandReadDto> GetCommandForPlatform(int platformId, int commandId)
         {
             System.Console.WriteLine($"--> Getting Command for Platform: {platformId} / {commandId}");
 
@@ -49,7 +49,7 @@ namespace CommandsService.Controllers
             if (command == null)
             {
                 return NotFound();
-            }   
+            }
 
             return Ok(_mapper.Map<CommandReadDto>(command));
         }
@@ -64,15 +64,15 @@ namespace CommandsService.Controllers
                 return NotFound();
             }
 
-            var command = _mapper.Map<Command>(commandDto); 
+            var command = _mapper.Map<Command>(commandDto);
 
             _repository.CreateCommand(platformId, command);
             _repository.SaveChanges();
 
             var CommandReadDto = _mapper.Map<CommandReadDto>(command); //  the command has an Id
 
-            return  CreatedAtRoute(nameof(GetCommandForPlatform),
-            new {platformId = platformId, commandId = CommandReadDto.Id}, CommandReadDto);
+            return CreatedAtRoute(nameof(GetCommandForPlatform),
+            new { platformId = platformId, commandId = CommandReadDto.Id }, CommandReadDto);
 
         }
 
